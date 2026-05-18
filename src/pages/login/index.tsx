@@ -334,13 +334,8 @@ const Login = () => {
             <Image
               w="151px"
               h="auto"
-              src={
-                getSetting("logo").split("\n")[0] ===
-                "https://cdn.jsdelivr.net/gh/alist-org/logo@main/logo.svg"
-                  ? joinBase("/images/new_icon.png")
-                  : getSetting("logo").split("\n")[0]
-              }
-              alt="AList Logo"
+              src={getSetting("logo").split("\n")[0]}
+              alt="BIT.lib Logo"
             />
           </HStack>
         </Show>
@@ -535,14 +530,6 @@ const Login = () => {
             }}
             spacing="$4"
           >
-            <Flex alignItems="center" justifyContent="center">
-              <Heading color="#3573FF" fontSize="18px">
-                {isRegisterMode()
-                  ? t("login.register")
-                  : t("login.password_login")}
-              </Heading>
-            </Flex>
-            <Divider borderColor="#E9E9E9" />
             <Show
               when={!needOpt()}
               fallback={
@@ -569,7 +556,7 @@ const Login = () => {
                 spacing="$2"
                 alignItems="center"
                 _focusWithin={{
-                  borderColor: "$primary6",
+                  borderColor: "#0f0",
                   boxShadow: "0 0 0 1px $colors$primary6",
                 }}
               >
@@ -604,7 +591,7 @@ const Login = () => {
                   spacing="$2"
                   alignItems="center"
                   _focusWithin={{
-                    borderColor: "$primary6",
+                    borderColor: "#0f0",
                     boxShadow: "0 0 0 1px $colors$primary6",
                   }}
                 >
@@ -647,34 +634,20 @@ const Login = () => {
                   />
                 </HStack>
               </Show>
-              {/* 新版本忘记密码 */}
-              <Show when={!isRegisterMode()}>
-                <Flex
-                  px="$1"
-                  w="$full"
-                  fontSize="$sm"
-                  color="$neutral10"
-                  justifyContent="flex-end"
-                  alignItems="center"
-                >
-                  <Text as="a" target="_blank" href={t("login.forget_url")}>
-                    {t("login.forget")}
-                  </Text>
-                </Flex>
-              </Show>
+              {/* убрал восстановление пароля в новой версии */}
             </Show>
             <VStack w="$full" spacing="$4">
               <Button
                 w="$full"
                 loading={loading() || registerLoading()}
                 onClick={Login}
-                bgColor="#3573FF"
+                bgColor="#65a935"
                 color="white"
                 _hover={{
-                  backgroundColor: "#2B5CD9",
+                  backgroundColor: "#399500",
                 }}
                 _active={{
-                  backgroundColor: "#1E40AF",
+                  backgroundColor: "#399500",
                 }}
                 h="45px"
                 fontSize="16px"
@@ -706,27 +679,7 @@ const Login = () => {
                       : t("login.register")}
                   </Text>
                 </Show>
-                <Text
-                  as="a"
-                  onClick={() => {
-                    changeToken()
-                    to(
-                      decodeURIComponent(
-                        searchParams.redirect || base_path || "/",
-                      ),
-                      true,
-                    )
-                  }}
-                  color="#3573FF"
-                  fontSize="14px"
-                  cursor="pointer"
-                  _hover={{
-                    textDecoration: "underline",
-                    color: "#2B5CD9",
-                  }}
-                >
-                  {t("login.use_guest")}
-                </Text>
+                {/* убрал войти как гость */}
               </HStack>
             </VStack>
             <Flex
